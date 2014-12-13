@@ -1,0 +1,25 @@
+{
+  "name": "socket.io-delayed_filter",
+  "version": "0.0.1",
+  "description": "socket.io-delayed_filter",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qurihara/socket.io-delayed_filter.git"
+  },
+  "keywords": [
+    "stdin",
+    "stdout",
+    "socket.io"
+  ],
+  "author": "Kazutaka Kurihara",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "c77b53cedd8e11003b76d097952275eeef8867d9",
+  "dependencies": {
+    "socket.io-client": "~1.2.1"
+  }
+}

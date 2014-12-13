@@ -1,6 +1,6 @@
 var settings = require('./settings');
 
-var delay = false;
+var delay = settings.initial_state;
 
 var ioc = require('socket.io-client');
 var socc;

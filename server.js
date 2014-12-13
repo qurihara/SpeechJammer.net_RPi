@@ -1,7 +1,7 @@
 var settings = require('./settings');
 
 var app = require('http').createServer(handler),
-	io = require('socket.io').listen(app,{'log level': 1}),
+	io = require('socket.io').listen(app,{'log level': 1});
 app.listen(settings.port);
 
 var http = require('http');
@@ -25,4 +25,3 @@ function handler(req,res){
 io.sockets.on('connection', function (socket) {
     console.log('a client connected.');
 });
-

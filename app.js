@@ -4,13 +4,13 @@ var delay = false;
 
 var ioc = require('socket.io-client');
 var socc;
-console.log("connecting to server...");
+debug_log("connecting to server...");
 socc = ioc.connect(settings.server_path);
 socc.on('connect', function (data) {
-  console.log("connected to server.");
+  debug_log("connected to server.");
 });
 socc.on('delay_status', function (msg) {
-  console.log("recieved delay_status : " + msg);
+  debug_log("recieved delay_status : " + msg);
   delay = msg;
 });
 
@@ -25,4 +25,10 @@ process.stdin.on('data',function(chunk){
                 }, settings.delay);
         }
 });
+
+function debug_log(msg){
+  if (settings.debug){
+    console.log(msg);
+  }
+}
 

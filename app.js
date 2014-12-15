@@ -15,7 +15,7 @@ socc.on('delay_status', function (msg) {
   update();
 });
 
-var spawn = require('child_process').spawn;
+//var spawn = require('child_process').spawn;
 var exec = require ('child_process').exec;
 var ps = null;
 function update(){

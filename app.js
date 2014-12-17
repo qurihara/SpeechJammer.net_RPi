@@ -13,6 +13,7 @@ socc.on('delay_status', function (msg) {
   debug_log("recieved delay_status : " + msg);
   delay = msg;
   update();
+});
 
 socc.on('delay_duration', function (millisec) {
   debug_log("recieved delay_duration : " + millisec);

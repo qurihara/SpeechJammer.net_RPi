@@ -5,12 +5,21 @@
 	<title>Delay Remo-con</title>
 </head>
 <body>
+	<p>
 	<button type="button" onClick="emit_on()" style='font-size:128px;font-weight:bold;'>
 	ON
 	</button>
+	</p>
+	<p>
 	<button type="button" onClick="emit_off()" style='font-size:128px;font-weight:bold;'>
 	OFF
 	</button>
+	</p>
+	<p>
+	<button type="button" onClick="emit_duration()" style='font-size:128px;font-weight:bold;'>
+	FIRE!
+	</button>
+	</p>
 	<div id="yt" style = "height: 100%;"></div>
 	<script src="jquery.min.js"></script>
 
@@ -25,6 +34,9 @@
 		function emit_off(){      
 			var targetNode = document.getElementById('yt');
             targetNode.innerHTML = '<iframe style="width:100%;height:100%;" src="./delay_off" frameborder="0" allowfullscreen></iframe>';            
+		function emit_duration(){      
+			var targetNode = document.getElementById('yt');
+            targetNode.innerHTML = '<iframe style="width:100%;height:100%;" src="./delay_5000" frameborder="0" allowfullscreen></iframe>';            
 		}
 	</script>
 </body>

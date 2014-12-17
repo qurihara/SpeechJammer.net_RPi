@@ -25,6 +25,14 @@ function handler(req,res){
       res.end();
       return;
   }
+  if (req.url.lastIndexOf('/delay_5000', 0) === 0){
+      io.sockets.emit('delay_duration',5000);
+      console.log("delay_duration 5000 emitted.");
+      res.writeHead(200);
+      res.write("ok");
+      res.end();
+      return;
+  }
 
   fs.readFile(__dirname + req.url,function(err,data){
     if(err){

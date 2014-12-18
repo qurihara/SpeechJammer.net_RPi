@@ -19,7 +19,7 @@ node app
 
 でクライアントを起動。
 
-setting.js
+settings.js
 
 に、サーバのポート、サーバのアドレス等を記載します。
 

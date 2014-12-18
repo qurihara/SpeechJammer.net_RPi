@@ -1,14 +1,15 @@
 {
-  "name": "socket.io-delayed_filter",
+  "name": "SpeechJammer.net_RPi",
   "version": "0.0.1",
-  "description": "socket.io-delayed_filter",
+  "description": "SpeechJammer.net for Raspberry Pi",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/qurihara/socket.io-delayed_filter.git"
+    "url": "https://github.com/qurihara/SpeechJammer.net_RPi.git"
   },
   "keywords": [
     "stdin",

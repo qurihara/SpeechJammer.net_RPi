@@ -78,7 +78,6 @@ function update(){
         } else{
           debug_log("delay on");
         }
-    });
 }
 
 function debug_log(msg){

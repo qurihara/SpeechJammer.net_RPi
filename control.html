@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 	<meta charset="utf-8">
-	<title>Delay Remo-con</title>
+	<title>SpeechJammer.net</title>
 </head>
 <body>
 	<p>
@@ -21,7 +21,40 @@
 	</button>
 	</p>
 	<div id="yt" style = "height: 100%;"></div>
+	<div id="dl" style = "height: 100%;"></div>
+	<script src="/socket.io/socket.io.js"></script>
 	<script>
+		var delay=false;
+		$(function(){
+			var socket = io.connect();
+			socket.on('delay_status', function (msg) {
+				//console.log(msg);
+				delay = msg;
+				update();
+			});
+			socket.on('delay_duration', function (millisec) {
+				//console.log(msg);
+				delay = true;
+				update();
+				setTimeout(function(){
+					delay = false;
+					update();
+				},millisec);
+			});
+			update();
+		});
+		function update(){
+			if(!delay) {
+				debug_log("delay off");
+				var targetNode = document.getElementById('dl');
+				targetNode.innerHTML = '<p>delay_off</p>';            
+			} else{
+				debug_log("delay on");
+				var targetNode = document.getElementById('dl');
+				targetNode.innerHTML = '<p>delay_on</p>';            
+			}
+		}
+
 		function emit_on(){      
 			var targetNode = document.getElementById('yt');
             targetNode.innerHTML = '<iframe style="width:100%;height:100%;" src="./delay_on" frameborder="0" allowfullscreen></iframe>';            

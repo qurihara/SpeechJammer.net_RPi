@@ -46,11 +46,11 @@
 		});
 		function update(){
 			if(!delay) {
-				debug_log("delay off");
+				console.log("delay off");
 				var targetNode = document.getElementById('dl');
 				targetNode.innerHTML = '<p>delay_off</p>';            
 			} else{
-				debug_log("delay on");
+				console.log("delay on");
 				var targetNode = document.getElementById('dl');
 				targetNode.innerHTML = '<p>delay_on</p>';            
 			}

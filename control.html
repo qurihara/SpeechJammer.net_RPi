@@ -21,7 +21,6 @@
 	</button>
 	</p>
 	<div id="yt" style = "height: 100%;"></div>
-	<div id="dl" style = "height: 100%;"></div>
 	<script src="jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
@@ -47,12 +46,10 @@
 		function update(){
 			if(!delay) {
 				console.log("delay off");
-				var targetNode = document.getElementById('dl');
-				targetNode.innerHTML = '<p>delay_off</p>';            
+				document.body.style.backgroundColor = '#FFFFFF';
 			} else{
 				console.log("delay on");
-				var targetNode = document.getElementById('dl');
-				targetNode.innerHTML = '<p>delay_on</p>';            
+				document.body.style.backgroundColor = '#FF0000';
 			}
 		}
 

@@ -27,3 +27,6 @@ http://[path_to_server]:8886/control.html
 
 にPCやスマートフォンのブラウザからアクセスすると、JammingをOn/Off, 一定時間（デフォルトでは5秒）Onにするボタンを備えた操作盤が出ます。
 
+sudo node switch_led
+
+で、物理ボタンによるスイッチ制御やLEDによる状態表示を行います（要ハードウェア）。配線はswitch_led.jsをご参照ください。

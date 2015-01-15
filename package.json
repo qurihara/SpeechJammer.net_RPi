@@ -12,8 +12,7 @@
     "url": "https://github.com/qurihara/SpeechJammer.net_RPi.git"
   },
   "keywords": [
-    "stdin",
-    "stdout",
+    "Speech Jammer",
     "socket.io"
   ],
   "author": "Kazutaka Kurihara",
@@ -22,6 +21,7 @@
   "gitHead": "c77b53cedd8e11003b76d097952275eeef8867d9",
   "dependencies": {
     "socket.io-client": "~1.2.1",
-    "socket.io": "~1.2.1"
+    "socket.io": "~1.2.1",
+    "wiring-pi": "~1.1.2"
   }
 }

@@ -1,7 +1,7 @@
 // Asumes #23 pin to a switch, and #18 pin to a LED. 
-
+var path = require('path');
+var http = require('http');
 var settings = require('./settings');
-
 var wpi = require('wiring-pi');
 
 wpi.setup('gpio');
@@ -9,27 +9,31 @@ wpi.pinMode(23,wpi.modes.INPUT);
 wpi.pullUpDnControl(23,wpi.PUD_UP);
 wpi.pinMode(18, wpi.OUTPUT);
 var prev_inp = wpi.digitalRead(23);
-setTimeout(read(), 100);
+read();
 
 function read(){
   var inp = wpi.digitalRead(23);
-#  console.log(inp);
+//  console.log(inp);
   if (inp != prev_inp){    
     setTimeout(emit_off(), 200);  
     prev_inp = inp;
   }
-  setTimeout(read(), 100);  
+  setTimeout(function() {
+    read();
+  }, 100);  
 }
 
-var path = require('path');
 function emit_off () {
-  var targetUrl = path.join(settings.server_path,'delay_off');
+//  var targetUrl = path.join(settings.server_path,'delay_off');
+  var targetUrl = settings.server_path + '/delay_off';
   var req = http.get(targetUrl, function(res) {
-    console.log('get response');
+    console.log('get response :' + targetUrl);
     res.setEncoding('utf8');
     res.on('data', function(str) {
+      console.log('data : ' + str);
           });
     res.on('end', function(){
+      console.log('end');
     });
   });
   req.setTimeout(1000);
@@ -72,11 +76,12 @@ socc.on('delay_duration', function (millisec) {
 });
 
 function update(){
-        wpi.digitalWrite(18,delay);
         if(!delay) {
           debug_log("delay off");
+          wpi.digitalWrite(18,0);
         } else{
           debug_log("delay on");
+          wpi.digitalWrite(18,1);
         }
 }
 

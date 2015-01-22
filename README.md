@@ -26,7 +26,7 @@ settings.js
 
 http://[path_to_server]:8886/control.html
 
-にPCやスマートフォンのブラウザからアクセスすると、JammingをOn/Off, 一定時間（デフォルトでは5秒）Onにするボタンを備えた操作盤が出ます。
+にPCやスマートフォンのブラウザからアクセスすると、JammingをOn/Off, 一定時間（デフォルトでは5秒）Onにするボタン、タイマー等を備えた操作盤が出ます。
 
 sudo node switch_led
 

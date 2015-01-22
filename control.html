@@ -34,7 +34,7 @@
 		</p>
 
 		<div class="Timer">
-			<div id="TimeLeft"></div>
+			<div id="TimeLeft" style='font-size:128px;font-weight:bold;'></div>
 		</div>
 
 	<div id="yt" style = "height: 100%;"></div>
@@ -108,7 +108,8 @@
 		var h = Math.floor((left % a_day) / (60 * 60 * 1000)) 
 		var m = Math.floor((left % a_day) / (60 * 1000)) % 60 
 		var s = Math.floor((left % a_day) / 1000) % 60 % 60 
-		$("#TimeLeft").text(d + ':' + h + ':' + m + ':' + s);
+		//$("#TimeLeft").text(d + ':' + h + ':' + m + ':' + s);
+		$("#TimeLeft").text(h + ':' + m + ':' + s);
 		setTimeout('countDown()', 200);
 	}
 	function finish(){

@@ -26,24 +26,45 @@
 			<td align="right"><b>min.</b></td>
 		</tr>
 		<tr>
-		</table>
-		<p>
-			<button type="button" onClick="countDownStart()" style='font-size:128px;font-weight:bold;'>
-				START
-			</button>
-		</p>
+	</table>
+	<p>
+		<button type="button" onClick="countDownStart()" style='font-size:128px;font-weight:bold;'>
+			START
+		</button>
+	</p>
 
-		<div class="Timer">
-			<div id="TimeLeft" style='font-size:128px;font-weight:bold;'></div>
-		</div>
+	<div class="Timer">
+		<div id="TimeLeft" style='font-size:128px;font-weight:bold;'></div>
+	</div>
+
+	<table border="0" style='font-size:128px;font-weight:bold;'>
+		<tr>
+			<td><input type="text" id="nvotes" size="2" maxlength="3" value = "10" style='font-size:128px;font-weight:bold;'></td>
+		</tr>
+		</tr>
+			<td align="right">
+				<button type="button" onClick="set_vote()" style='font-size:128px;font-weight:bold;'>
+					SET VOTE
+				</button>
+			</td>
+		</tr>
+	</table>
+	<div id="bt" style='font-size:128px;font-weight:bold;'></div>
+	<p>
+		<button type="button" id="vote" onClick="vote()" style='font-size:128px;font-weight:bold;'>
+			VOTE
+		</button>
+	</p>
 
 	<div id="yt" style = "height: 100%;"></div>
 	<script src="jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
+		var votes = 10;
 		var delay=false;
+		var socket;
 		$(function(){
-			var socket = io.connect();
+			socket = io.connect();
 			socket.on('delay_status', function (msg) {
 				//console.log(msg);
 				delay = msg;
@@ -58,6 +79,21 @@
 					update();
 				},millisec);
 			});
+
+			socket.on('set_vote', function (msg) {
+				console.log(msg);
+				votes = Number(msg);
+				update();
+				var targetNode = document.getElementById('vote').disabled = false;
+			});
+			socket.on('vote', function (msg) {
+				console.log(msg);
+				votes = votes - 1;
+				console.log(votes);
+				if (votes <= 0) emit_on();
+				update();
+			});
+
 			update();
 		});
 		function update(){
@@ -68,6 +104,10 @@
 				console.log("delay on");
 				document.body.style.backgroundColor = '#FF0000';
 			}
+
+			var targetNode = document.getElementById('bt');
+            targetNode.innerHTML = '[' + votes + ']';            
+
 		}
 
 		function emit_on(){      
@@ -81,6 +121,17 @@
 		function emit_duration(){      
 			var targetNode = document.getElementById('yt');
             targetNode.innerHTML = '<iframe style="width:100%;height:100%;" src="./delay_5000" frameborder="0" allowfullscreen></iframe>';            
+		}
+
+		function vote(){
+			socket.emit('vote',true);
+			console.log('vote');
+			var targetNode = document.getElementById('vote').disabled = true;
+		}
+		function set_vote(){
+			var num = Number($("#nvotes").val());
+			socket.emit('set_vote',num);
+			console.log('set_vote');
 		}
 	</script>
 	<script type="text/javascript">

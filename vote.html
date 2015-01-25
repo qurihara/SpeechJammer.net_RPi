@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>SpeechJammer.net</title>
+</head>
+<body>
+	<div id="bt" style='font-size:128px;font-weight:bold;'></div>
+	<p>
+		<button type="button" id="vote" onClick="vote()" style='font-size:128px;font-weight:bold;'>
+			VOTE
+		</button>
+	</p>
+
+	<div id="yt" style = "height: 100%;"></div>
+	<script src="jquery.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		var votes = 10;
+		var delay=false;
+		var socket;
+		$(function(){
+			socket = io.connect();
+			socket.on('delay_status', function (msg) {
+				//console.log(msg);
+				delay = msg;
+				update();
+			});
+			socket.on('delay_duration', function (millisec) {
+				//console.log(msg);
+				delay = true;
+				update();
+				setTimeout(function(){
+					delay = false;
+					update();
+				},millisec);
+			});
+
+			socket.on('set_vote', function (msg) {
+				console.log(msg);
+				votes = Number(msg);
+				update();
+				var targetNode = document.getElementById('vote').disabled = false;
+			});
+			socket.on('vote', function (msg) {
+				console.log(msg);
+				votes = votes - 1;
+				console.log(votes);
+				if (votes <= 0) emit_on();
+				update();
+			});
+
+			update();
+		});
+		function update(){
+			if(!delay) {
+				console.log("delay off");
+				document.body.style.backgroundColor = '#FFFFFF';
+			} else{
+				console.log("delay on");
+				document.body.style.backgroundColor = '#FF0000';
+			}
+
+			var targetNode = document.getElementById('bt');
+            targetNode.innerHTML = '[' + votes + ']';            
+
+		}
+
+		function vote(){
+			socket.emit('vote',true);
+			console.log('vote');
+			var targetNode = document.getElementById('vote').disabled = true;
+		}
+	</script>
+
+</body>
+</html>

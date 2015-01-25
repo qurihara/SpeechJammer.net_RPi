@@ -47,4 +47,13 @@ function handler(req,res){
 
 io.sockets.on('connection', function (socket) {
     console.log('a client connected.');
+    socket.on('set_vote', function (data) {
+      console.log("set_vote : " + data);
+      io.sockets.emit('set_vote', data);
+    });
+    socket.on('vote', function (data) {
+      console.log("vote : " + data);
+      io.sockets.emit('vote', data);
+    });
+
 });
